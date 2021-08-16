@@ -1,0 +1,8 @@
+name: data_structures
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python>=3
+ 
