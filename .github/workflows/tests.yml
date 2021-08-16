@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up conda environment
         run: conda env create -f ./environment.yml
-      - run: cd src
       - name: Running unit tests
-        run: $CONDA/envs/data_structures/python -m unittest -v
+        run: |
+          cd src/
+          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
