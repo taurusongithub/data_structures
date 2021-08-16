@@ -12,5 +12,4 @@ jobs:
         run: conda env create -f ./environment.yml
       - run: cd src
       - name: Running unit tests
-        run: cd $CONDA/envs/data_structures/
-      - run: ls
+        run: $CONDA/envs/data_structures/bin/python -m unittest discovery -v -s src/tests
