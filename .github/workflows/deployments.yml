@@ -4,7 +4,7 @@ on:
   - workflow_dispatch
 
 jobs:
-  DEV deployment:
+  DEV_deployment:
     runs-on: ubuntu-latest
     environment: DEV
     steps:
@@ -28,7 +28,7 @@ jobs:
           $CONDA/envs/data_structures/bin/python -m pip install --upgrade twine
           $CONDA/envs/data_structures/bin/python -m twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
 
-  Testing DEV deployment:
+  Testing_DEV_deployment:
     runs-on: ubuntu-latest
     needs: DEV deployment
     steps:
