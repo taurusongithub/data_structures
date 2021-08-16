@@ -10,4 +10,12 @@ elements:
     -------
     Number:
         Immutable real numbers.
+
+stacks:
+    Stack-like data structures.
+
+    Classes
+    -------
+    Stack:
+        Basic stack data structure.
 """
