@@ -1,6 +1,7 @@
 name: Deploy
 
 on:
+  # manual
   - workflow_dispatch
 
 jobs:
