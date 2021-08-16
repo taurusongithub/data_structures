@@ -11,9 +11,9 @@ jobs:
       - name: Set up conda environment
         run: conda env create -f ./environment.yml
       - name: Running unit tests
-          run: |
-            cd src/
-            $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
+        run: |
+          cd src/
+          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
 
   Tests_Windows:
     runs-on: ubuntu-latest
@@ -23,9 +23,9 @@ jobs:
       - name: Set up conda environment
         run: conda env create -f ./environment.yml
       - name: Running unit tests
-          run: |
-            cd src/
-            $CONDA/envs/data_structures/python -m unittest discover -v -s tests
+        run: |
+          cd src/
+          $CONDA/envs/data_structures/python -m unittest discover -v -s tests
 
   DEV_deployment:
     runs-on: ubuntu-latest
