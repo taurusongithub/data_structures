@@ -30,7 +30,7 @@ jobs:
 
   Testing_DEV_deployment:
     runs-on: ubuntu-latest
-    needs: DEV deployment
+    needs: DEV_deployment
     steps:
       - uses: actions/checkout@v2
       - name: Set up conda environment
