@@ -1,7 +1,7 @@
 name: Testing classes
 
 on:
-  - pull_requests
+  - pull-requests
 
 jobs:
   tests:
