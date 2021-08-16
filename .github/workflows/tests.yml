@@ -13,4 +13,4 @@ jobs:
       - name: Running unit tests
         run: |
           cd src/
-          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s src/tests
+          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
