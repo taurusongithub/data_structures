@@ -26,7 +26,7 @@ jobs:
       - name: Running unit tests
         run: |
           cd src/
-          $CONDA/envs/data_structures/python -m unittest discover -v -s tests
+          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
 
   DEV_deployment:
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
       - name: Install data structures from TestPyPi
         run: $CONDA/envs/data_structures/bin/python -m pip install --index-url https://test.pypi.org/simple/ data-structures-nicorodc
       - name: Install JuyterLab
-        run: $CONDA/Scripts/conda install -n data_structures jupyterlab -c conda-forge -y
+        run: conda install -n data_structures jupyterlab -c conda-forge -y
       - name: Run Jupyter Notebook
         run: $CONDA/envs/data_structures/bin/jupyter nbconvert --to notebook uat_deployment_proof.ipynb --execute --inplace --allow-errors
       - uses: stefanzweifel/git-auto-commit-action@v4
