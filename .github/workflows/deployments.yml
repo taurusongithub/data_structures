@@ -1,0 +1,48 @@
+name: Deploy
+
+on:
+  - workflow_dispatch
+
+jobs:
+  DEV deployment:
+    runs-on: ubuntu-latest
+    environment: DEV
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up conda environment
+        run: conda env create -f ./environment.yml
+      - name: Update pip
+        run: $CONDA/envs/data_structures/bin/python -m pip install --upgrade pip
+      - name: Install dependencies with pip
+        run: $CONDA/envs/data_structures/bin/python -m pip install -r requirements.txt
+      - name: Running unit tests
+        run: |
+          cd src/
+          $CONDA/envs/data_structures/bin/python -m unittest discover -v -s tests
+      - name: Build package
+        run: |
+          $CONDA/envs/data_structures/bin/python -m pip install --upgrade build
+          $CONDA/envs/data_structures/bin/python -m build
+      - name: Upload to PyPi
+        run: |
+          $CONDA/envs/data_structures/bin/python -m pip install --upgrade twine
+          $CONDA/envs/data_structures/bin/python -m twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+
+  Testing DEV deployment:
+    runs-on: ubuntu-latest
+    needs: DEV deployment
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up conda environment
+        run: conda env create -f ./environment.yml
+      - name: Update pip
+        run: $CONDA/envs/data_structures/bin/python -m pip install --upgrade pip
+      - name: Install dependencies with pip
+        run: $CONDA/envs/data_structures/bin/python -m pip install -r requirements.txt
+      - name: Install data structures from TestPyPi
+        run: $CONDA/envs/data_structures/bin/python -m pip install --index-url https://test.pypi.org/simple/ data-structures-nicorodc
+      - name: Install JuyterLab
+        run: yes | $CONDA/envs/data_structures/bin/conda install jupyterlab -c conda-forge
+      - name: Run Jupyter Notebook
+        run: $CONDA/envs/data_structures/bin/jupyter nbconvert --to notebook uat_deployment_proof.ipynb --execute --inplace --allow-errors
+      - uses: stefanzweifel/git-auto-commit-action@v4
