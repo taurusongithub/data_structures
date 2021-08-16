@@ -42,7 +42,7 @@ jobs:
       - name: Install data structures from TestPyPi
         run: $CONDA/envs/data_structures/bin/python -m pip install --index-url https://test.pypi.org/simple/ data-structures-nicorodc
       - name: Install JuyterLab
-        run: yes | $CONDA/envs/data_structures/bin/conda install jupyterlab -c conda-forge
+        run: $CONDA/envs/data_structures/bin/conda install jupyterlab -c conda-forge -y
       - name: Run Jupyter Notebook
         run: $CONDA/envs/data_structures/bin/jupyter nbconvert --to notebook uat_deployment_proof.ipynb --execute --inplace --allow-errors
       - uses: stefanzweifel/git-auto-commit-action@v4
