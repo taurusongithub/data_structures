@@ -18,8 +18,8 @@ class Queue:
 
     Queues are a type of data structures that contains items with the
     following rules:
-      - items can only be added to the stack from the "right"
-      - items can only be removed from the stack from the "left"
+      - items can only be added to the queue from the "right"
+      - items can only be removed from the queue from the "left"
 
     Methods
     -------
