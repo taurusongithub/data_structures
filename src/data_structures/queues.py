@@ -16,16 +16,21 @@ from typing import Any, NoReturn
 class Queue:
     """Basic queue data structure.
 
+    Queues are a type of data structures that contains items with the
+    following rules:
+      - items can only be added to the stack from the "right"
+      - items can only be removed from the stack from the "left"
+
     Methods
     -------
     push:
-        Push a new item to the top of the queue.
+        Push a new item to the right end of the queue.
 
     pop:
-        Removes the top item from the queue and returns it.
+        Removes the left most item from the queue and returns it.
 
     peak:
-        Returns the top item of the queue without removing it.
+        Returns the left most item of the queue without removing it.
 
     size:
         Length of the list of items currently in the queue.
@@ -59,12 +64,12 @@ class Queue:
             self._output_stack.push(self._input_stack.pop())
 
     def peak(self) -> Any:
-        """Returns the top item of the queue without removing it.
+        """Returns the bottom item of the queue without removing it.
 
         Returns
         -------
         top_item: Any
-            The item at the top of the queue.
+            The item at the bottom of the queue.
 
         Raises
         ------
