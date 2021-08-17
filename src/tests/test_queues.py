@@ -1,7 +1,7 @@
-"""Test for the data_structures.stacks module.
+"""Test for the data_structures.queues module.
 
-TestStack:
-    Tests for the Stack class.
+TestQueue:
+    Tests for the Queue class.
 """
 
 import unittest
