@@ -18,4 +18,12 @@ stacks:
     -------
     Stack:
         Basic stack data structure.
+
+queues:
+    Queue-like data structures.
+
+    Classes
+    -------
+    Queue:
+        Basic queue data structure.
 """
