@@ -2,13 +2,12 @@ name: Deploy
 
 on:
   # manual
-  workflow_dispatch:
-    branches:
-      - main
+  - workflow_dispatch
 
 jobs:
   Tests_Ubuntu:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/release_')
     steps:
       - uses: actions/checkout@v2
       - name: Set up conda environment
