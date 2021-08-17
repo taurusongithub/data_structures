@@ -18,8 +18,12 @@ class Queue:
 
     Queues are a type of data structures that contains items with the
     following rules:
-      - items can only be added to the queue from the "right"
-      - items can only be removed from the queue from the "left"
+      - items can only be added to the queue from the "right",
+      - items can only be removed from the queue from the "left".
+
+    Queues in this class are implemented via 2 stacks, an input stack
+    and an output stack. When popping from an output stack, the input
+    stack must be flushed to the output stack.
 
     Methods
     -------
@@ -36,7 +40,9 @@ class Queue:
         Length of the list of items currently in the queue.
     """
 
-    def __init__(self):
+    def __init__(self) -> NoReturn:
+        """Iinitializes the input and output stacks."""
+
         self._input_stack = Stack()
         self._output_stack = Stack()
 
