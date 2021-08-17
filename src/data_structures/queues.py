@@ -41,12 +41,13 @@ class Queue:
         self._output_stack = Stack()
 
     def push(self, new_item: Any) -> NoReturn:
-        """Push a new item to the top of the queue.
+        """Push a new item to the right end of the queue.
 
         Parameters
         ----------
         new_item: any
-            An item to push to the top to the queue, could be anything.
+            An item to push to the right end of the queue, could be
+            anything.
         """
 
         self._input_stack.push(new_item)
@@ -64,12 +65,12 @@ class Queue:
             self._output_stack.push(self._input_stack.pop())
 
     def peak(self) -> Any:
-        """Returns the bottom item of the queue without removing it.
+        """Returns the left most item of the queue without removing it.
 
         Returns
         -------
-        top_item: Any
-            The item at the bottom of the queue.
+        left_item: Any
+            The left most item of the queue.
 
         Raises
         ------
@@ -84,12 +85,12 @@ class Queue:
             raise IndexError("The Queue is empty!")
 
     def pop(self) -> Any:
-        """Removes the top item from the queue and returns it.
+        """Removes the left most item from the queue and returns it.
 
         Returns
         -------
-        top_item: Any
-            The item at the top of the queue, prior to removal.
+        left_item: Any
+            The left most item of the queue, prior to removal.
 
         Raises
         ------
