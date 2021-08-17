@@ -15,6 +15,11 @@ from typing import NoReturn, Any
 class Stack:
     """Basic stack data structure.
 
+    Stacks are a type data structures that contains items with the
+    following two rules:
+      - items can only be added to the stack from the "top"
+      - items can only be removed from the stack from the "top"
+
     Methods
     -------
     push:
