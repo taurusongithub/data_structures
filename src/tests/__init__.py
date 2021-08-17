@@ -12,4 +12,9 @@ Modules
         Classes
         -------
             TestStack: Tests for the Stack class.
+
+    test_queues:
+        Classes
+        -------
+            TestQueue: Tests for the Queue class.
 """
