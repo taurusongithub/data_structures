@@ -19,6 +19,10 @@ stacks:
     Stack:
         Basic stack data structure.
 
+    TypeRestrictedStack:
+        Stack that only allow instances of a certain class to be
+        pushed.
+
 queues:
     Queue-like data structures.
 

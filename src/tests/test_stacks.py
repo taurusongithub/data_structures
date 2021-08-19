@@ -2,10 +2,14 @@
 
 TestStack:
     Tests for the Stack class.
+
+TestTypeRestrictedStack:
+    Tests for the TypeRestrictedStack class.
 """
 
 import unittest
-from data_structures.stacks import Stack
+from data_structures.elements import Number
+from data_structures.stacks import Stack, TypeRestrictedStack
 from random import random
 
 
@@ -103,3 +107,97 @@ class TestStack(unittest.TestCase):
         self.assertEqual(stack.size(), num_elements - 1)
         stack.pop()
         self.assertEqual(stack.size(), num_elements - 2)
+
+
+class TestTypeRestrictedStack(unittest.TestCase):
+    """Tests for the TypeRestrictedStack class.
+
+    Methods
+    -------
+    test_init:
+        TestTypeRestrictedStack must be initialized with a class.
+
+    test_accept_cls_immutability:
+        Type restricted stacks should have an immutable restriction.
+
+    test_type_verification:
+        TypeRestrictedStack.type_verification should raise only with
+        forbidden objects.
+
+    test_verify_types:
+        TypeRestrictedStack.verify_types raise with any forbidden item in it.
+
+    test_restricted_push:
+        Pushes in TypeRestrictedStacks must apply type restrictions.
+    """
+
+    def test_init(self):
+        """TypeRestrictedStack must be initialized with a class."""
+
+        x = TypeRestrictedStack()
+        self.assertEqual(x.acceptable_class, Number)
+
+    def test_accept_cls_immutability(self):
+        """TRS should have an immutable restriction."""
+
+        def redefine_acceptable_class(another_object_or_class):
+            x = TypeRestrictedStack()
+            x.acceptable_class = another_object_or_class
+
+        self.assertRaises(AttributeError, redefine_acceptable_class, 1.2)
+        self.assertRaises(AttributeError, redefine_acceptable_class, int)
+
+    def test_type_verification(self):
+        """TRS.type_verification raise only with forbidden objects."""
+
+        x = TypeRestrictedStack(float)
+        try:
+            x.type_verification(1.21)
+        except ValueError:
+            msg = ("TypeRestrictedStack.verify_types"
+                   + "raised an unexpected error")
+            self.fail(msg)
+
+        self.assertRaises(ValueError, x.type_verification, 1)
+        self.assertRaises(ValueError, x.type_verification, "asd")
+        y = TypeRestrictedStack(str)
+        try:
+            y.type_verification("pepe")
+        except ValueError:
+            msg = ("TypeRestrictedStack.type_verification"
+                   + "raised an unexpected error")
+            self.fail(msg)
+
+        self.assertRaises(ValueError, y.type_verification, 1.2)
+
+    def test_verify_types(self):
+        """TRS.verify_types raise with any forbidden item in it."""
+
+        x = TypeRestrictedStack(str)
+        x._items = ["asd", "dqw", "123"]
+        try:
+            x.verify_types()
+        except ValueError:
+            msg = ("TypeRestrictedStack.verify_types"
+                   + "raised an unexpected error")
+            self.fail(msg)
+
+        x._items.append(1.2)
+        self.assertRaises(ValueError, x.verify_types)
+
+    def test_restricted_push(self):
+        """Pushes in TRSs must apply type restrictions."""
+
+        x = TypeRestrictedStack(int)
+        try:
+            x.push(2)
+            x.push(3)
+        except ValueError:
+            msg = ("TypeRestrictedStack.push"
+                   + "raised an unexpected error")
+            self.fail(msg)
+
+        self.assertRaises(ValueError, x.push, 1.2)
+        self.assertRaises(ValueError, x.push, "asd")
+        y = TypeRestrictedStack()
+        self.assertRaises(ValueError, y.push, 3.14)
