@@ -13,6 +13,9 @@ Modules
         -------
             TestStack: Tests for the Stack class.
 
+            TestTypeRestrictedStack: Tests for the TypeRestrictedStack
+            class.
+
     test_queues:
         Classes
         -------
