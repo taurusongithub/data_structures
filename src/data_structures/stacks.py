@@ -5,6 +5,10 @@ Classes
 
 Stack:
     Basic stack data structure.
+
+TypeRestrictedStack:
+    Stack that only allow instances of a certain class to be
+    pushed.
 """
 
 __all__ = ['Stack', 'TypeRestrictedStack']
